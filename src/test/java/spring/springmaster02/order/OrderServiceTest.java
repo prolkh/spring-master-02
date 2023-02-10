@@ -1,8 +1,10 @@
 package spring.springmaster02.order;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import spring.springmaster02.AppConfig;
 import spring.springmaster02.member.Grade;
 import spring.springmaster02.member.Member;
 import spring.springmaster02.member.MemberService;
@@ -10,9 +12,15 @@ import spring.springmaster02.member.MemberServiceImpl;
 
 class OrderServiceTest {
 
-    MemberService memberService = new MemberServiceImpl();
-    OrderService orderService = new OrderServiceImpl();
+    MemberService memberService;
+    OrderService orderService;
 
+    @BeforeEach
+    public void beforeEach() {
+        AppConfig appConfig = new AppConfig();
+        memberService = appConfig.memberService();
+        orderService = appConfig.orderService();
+    }
 
     @Test
     @DisplayName("등급 할인이 정상적으로 적용되다.")
