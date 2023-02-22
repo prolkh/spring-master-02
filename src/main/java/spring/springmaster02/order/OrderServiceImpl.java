@@ -1,16 +1,18 @@
 package spring.springmaster02.order;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import spring.springmaster02.discount.DiscountPolicy;
-import spring.springmaster02.discount.FixDiscountPolicy;
 import spring.springmaster02.member.Member;
 import spring.springmaster02.member.MemberRepository;
-import spring.springmaster02.member.MemoryMemberRepository;
 
+@Component
 public class OrderServiceImpl implements OrderService{
 
     private final MemberRepository memberRepository;
     private DiscountPolicy discountPolicy;
 
+    @Autowired
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
